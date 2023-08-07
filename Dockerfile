@@ -54,3 +54,12 @@ RUN set -x && \
     /opt/conda/bin/conda clean -afy
 
 ENV PATH=/opt/cellranger-7.1.0:$PATH
+ADD bcl2fastq2-v2.20.0.422-Source.tar.gz /tmp/
+RUN mkdir /tmp/bcl2fastq/build && cd /tmp/bcl2fastq/build && ../src/configure --prefix=/opt/bcl2fastq
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    vim \
+    cmake \
+    zip
+
